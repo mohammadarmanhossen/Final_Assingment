@@ -15,23 +15,28 @@ class District(models.Model):
     def __str__(self):
         return self.district_name
     
+
 class Hotel(models.Model):
     hotel_name = models.CharField(max_length=255)
     address = models.TextField()
     district_names = models.ForeignKey(
-    'District',
-    on_delete=models.CASCADE,
-    related_name='hotels',
-    null=True,
-    blank=True
-    ) 
+        'District',
+        on_delete=models.CASCADE,
+        related_name='hotels',
+        null=True,
+        blank=True
+    )
     image = models.ImageField(upload_to="hotels/images")
     description = models.TextField()
     price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
     available_room = models.PositiveIntegerField()
 
     def __str__(self):
-        return  self.hotel_name
+        return self.hotel_name
+
+    def district_name(self):
+        return self.district_names.district_name if self.district_names else None
+
 
 RATING_CHOICES = [
         ('⭐', '⭐'),
