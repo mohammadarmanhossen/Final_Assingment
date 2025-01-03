@@ -20,7 +20,7 @@ class HotelViewSet(viewsets.ModelViewSet):
     queryset=models.Hotel.objects.all()
     serializer_class=serializer.HotelSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = ['district_names']  # Fields for exact filtering
+    search_fields = ['district_names']  # Fields for exact filtering
     search_fields = ['hotel_name']  # Fields for partial search
 
 
